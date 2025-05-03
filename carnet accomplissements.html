@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Carnet d'accomplissements</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 2em;
+      background: #f9f9f9;
+      color: #333;
+    }
+    .screen {
+      display: none;
+    }
+    .active {
+      display: block;
+    }
+    button {
+      margin-top: 1em;
+      padding: 0.5em 1em;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    textarea {
+      width: 100%;
+      height: 4em;
+      margin-bottom: 1em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Carnet de (Re)connaissance</h1>
+  <div id="screen1" class="screen active">
+    <h2>🧭 Choisis ton angle d'exploration</h2>
+    <button onclick="start('perseverance')">💪 Persévérance & efforts</button>
+    <button onclick="start('apprentissages')">🧠 Apprentissages</button>
+    <!-- Ajoute plus d'options ici -->
+  </div>
+
+  <div id="screen2" class="screen">
+    <h2>💬 Questions guidées : <span id="themeName"></span></h2>
+    <div id="questions"></div>
+    <button onclick="showSummary()">📋 Voir ma synthèse</button>
+  </div>
+
+  <div id="screen3" class="screen">
+    <h2>📋 Synthèse</h2>
+    <div id="summary"></div>
+    <button onclick="restart()">🔁 Recommencer</button>
+  </div>
+
+  <script>
+    const questionsBank = {
+      perseverance: {
+        name: "Persévérance & efforts",
+        questions: [
+          "As-tu déjà poursuivi quelque chose longtemps malgré les doutes ?",
+          "Quand as-tu travaillé dur sans reconnaissance, mais avec fierté intérieure ?",
+          "As-tu gardé le cap dans une période fatigante ou chaotique ?"
+        ]
+      },
+      apprentissages: {
+        name: "Apprentissages",
+        questions: [
+          "Qu’as-tu appris récemment qui t’a demandé un vrai effort ?",
+          "Quel apprentissage t’a changé dans ta façon d’agir ?",
+          "Qu’as-tu appris ‘sur le tas’, sans aide formelle ?"
+        ]
+      }
+    };
+
+    let currentTheme = "";
+
+    function start(theme) {
+      currentTheme = theme;
+      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+      document.getElementById('screen2').classList.add('active');
+      document.getElementById('themeName').innerText = questionsBank[theme].name;
+      const container = document.getElementById('questions');
+      container.innerHTML = "";
+      questionsBank[theme].questions.forEach((q, i) => {
+        container.innerHTML += `<p>${q}</p><textarea id="q${i}"></textarea>`;
+      });
+    }
+
+    function showSummary() {
+      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+      document.getElementById('screen3').classList.add('active');
+      const container = document.getElementById('summary');
+      container.innerHTML = "";
+      questionsBank[currentTheme].questions.forEach((q, i) => {
+        const val = document.getElementById(`q${i}`).value;
+        container.innerHTML += `<p><strong>${q}</strong><br>💬 ${val}</p>`;
+      });
+    }
+
+    function restart() {
+      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
+      document.getElementById('screen1').classList.add('active');
+    }
+  </script>
+</body>
+</html>
