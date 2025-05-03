@@ -1,104 +1,190 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <title>Carnet d'accomplissements</title>
-  <style>
-    body {
-      font-family: sans-serif;
-      margin: 2em;
-      background: #f9f9f9;
-      color: #333;
-    }
-    .screen {
-      display: none;
-    }
-    .active {
-      display: block;
-    }
-    button {
-      margin-top: 1em;
-      padding: 0.5em 1em;
-      font-size: 1em;
-      cursor: pointer;
-    }
-    textarea {
-      width: 100%;
-      height: 4em;
-      margin-bottom: 1em;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guide Introspectif</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+        nav ul li {
+            display: inline-block;
+            margin-right: 20px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 15px;
+            display: inline-block;
+        }
+        nav ul li a:hover {
+            background-color: #575757;
+        }
+        .content {
+            padding: 20px;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        .section h2 {
+            color: #4CAF50;
+        }
+    </style>
 </head>
 <body>
-  <h1>Carnet de (Re)connaissance</h1>
-  <div id="screen1" class="screen active">
-    <h2>🧭 Choisis ton angle d'exploration</h2>
-    <button onclick="start('perseverance')">💪 Persévérance & efforts</button>
-    <button onclick="start('apprentissages')">🧠 Apprentissages</button>
-    <!-- Ajoute plus d'options ici -->
-  </div>
 
-  <div id="screen2" class="screen">
-    <h2>💬 Questions guidées : <span id="themeName"></span></h2>
-    <div id="questions"></div>
-    <button onclick="showSummary()">📋 Voir ma synthèse</button>
-  </div>
+<header>
+    <h1>Guide Introspectif - Questionnaire Personnel</h1>
+</header>
 
-  <div id="screen3" class="screen">
-    <h2>📋 Synthèse</h2>
-    <div id="summary"></div>
-    <button onclick="restart()">🔁 Recommencer</button>
-  </div>
+<nav>
+    <ul>
+        <li><a href="#" onclick="showSection('section1')">Santé et Bien-être</a></li>
+        <li><a href="#" onclick="showSection('section2')">Carrière et Aspirations</a></li>
+        <li><a href="#" onclick="showSection('section3')">Finances</a></li>
+        <li><a href="#" onclick="showSection('section4')">Apprentissage et Développement</a></li>
+        <li><a href="#" onclick="showSection('section5')">Loisirs et Passions</a></li>
+        <li><a href="#" onclick="showSection('section6')">Rêves et Aspirations</a></li>
+    </ul>
+</nav>
 
-  <script>
-    const questionsBank = {
-      perseverance: {
-        name: "Persévérance & efforts",
-        questions: [
-          "As-tu déjà poursuivi quelque chose longtemps malgré les doutes ?",
-          "Quand as-tu travaillé dur sans reconnaissance, mais avec fierté intérieure ?",
-          "As-tu gardé le cap dans une période fatigante ou chaotique ?"
-        ]
-      },
-      apprentissages: {
-        name: "Apprentissages",
-        questions: [
-          "Qu’as-tu appris récemment qui t’a demandé un vrai effort ?",
-          "Quel apprentissage t’a changé dans ta façon d’agir ?",
-          "Qu’as-tu appris ‘sur le tas’, sans aide formelle ?"
-        ]
-      }
-    };
+<div class="content">
+    <div id="section1" class="section">
+        <h2>Santé et Bien-être</h2>
+        <p><strong>5.1 Quelle est mon approche de la santé physique ?</strong></p>
+        <ul>
+            <li>Je pratique régulièrement une activité physique</li>
+            <li>Je suis attentif(ve) à mon alimentation</li>
+            <li>Je priorise le repos et la récupération</li>
+            <li>Je lutte contre le stress et les tensions</li>
+        </ul>
+        <p><strong>5.2 Quelle est mon approche de la santé mentale ?</strong></p>
+        <ul>
+            <li>Je m’efforce d’entretenir un bon équilibre émotionnel</li>
+            <li>Je pratique l’auto-réflexion pour mieux comprendre mes besoins</li>
+            <li>Je cherche à éviter les sources de stress excessif</li>
+            <li>Je me tourne vers des proches ou des professionnels en cas de besoin</li>
+        </ul>
+    </div>
 
-    let currentTheme = "";
+    <div id="section2" class="section">
+        <h2>Carrière et Aspirations</h2>
+        <p><strong>6.1 Quelles sont mes aspirations professionnelles ?</strong></p>
+        <ul>
+            <li>Devenir un expert reconnu dans mon domaine</li>
+            <li>Évoluer vers un rôle de leadership</li>
+            <li>Travailler sur des projets à forte valeur ajoutée</li>
+            <li>Avoir un équilibre entre vie professionnelle et personnelle</li>
+        </ul>
+        <p><strong>6.2 Comment atteindre ces aspirations ?</strong></p>
+        <ul>
+            <li>En continuant à développer mes compétences professionnelles</li>
+            <li>En prenant des initiatives et en acceptant de nouvelles responsabilités</li>
+            <li>En cherchant à réseauter et à rencontrer des personnes inspirantes</li>
+        </ul>
+    </div>
 
-    function start(theme) {
-      currentTheme = theme;
-      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-      document.getElementById('screen2').classList.add('active');
-      document.getElementById('themeName').innerText = questionsBank[theme].name;
-      const container = document.getElementById('questions');
-      container.innerHTML = "";
-      questionsBank[theme].questions.forEach((q, i) => {
-        container.innerHTML += `<p>${q}</p><textarea id="q${i}"></textarea>`;
-      });
+    <div id="section3" class="section">
+        <h2>Finances et Gestion de l'Argent</h2>
+        <p><strong>7.1 Quelle est ma relation avec l'argent ?</strong></p>
+        <ul>
+            <li>Je suis prudent(e) dans mes dépenses</li>
+            <li>Je cherche à économiser pour l'avenir</li>
+            <li>Je suis ouvert(e) à l'investissement pour faire fructifier mon argent</li>
+            <li>Je suis parfois impulsif(ve) dans mes achats</li>
+        </ul>
+        <p><strong>7.2 Comment gérer mes finances de manière plus efficace ?</strong></p>
+        <ul>
+            <li>En établissant un budget mensuel et en suivant mes dépenses</li>
+            <li>En recherchant des conseils financiers pour investir judicieusement</li>
+            <li>En évitant les dépenses superflues</li>
+        </ul>
+    </div>
+
+    <div id="section4" class="section">
+        <h2>Apprentissage et Développement Personnel</h2>
+        <p><strong>8.1 Quelle est mon approche de l'apprentissage ?</strong></p>
+        <ul>
+            <li>Je suis curieux(se) et j’aime apprendre constamment</li>
+            <li>Je privilégie l’apprentissage pratique et expérientiel</li>
+            <li>Je me fixe des objectifs d’apprentissage clairs et mesurables</li>
+        </ul>
+        <p><strong>8.2 Comment je peux continuer à me développer ?</strong></p>
+        <ul>
+            <li>En recherchant des opportunités d’apprentissage formelles</li>
+            <li>En apprenant de mes erreurs et de mes succès</li>
+            <li>En échangeant avec des experts et des mentors</li>
+        </ul>
+    </div>
+
+    <div id="section5" class="section">
+        <h2>Loisirs et Passions</h2>
+        <p><strong>9.1 Quelles sont mes passions ?</strong></p>
+        <ul>
+            <li>La lecture et l’écriture</li>
+            <li>Les voyages et la découverte de nouvelles cultures</li>
+            <li>Les activités créatives comme la peinture ou la musique</li>
+        </ul>
+        <p><strong>9.2 Comment intégrer mes passions dans ma vie quotidienne ?</strong></p>
+        <ul>
+            <li>En consacrant du temps à mes loisirs chaque semaine</li>
+            <li>En cherchant des opportunités pour lier travail et passions</li>
+        </ul>
+    </div>
+
+    <div id="section6" class="section">
+        <h2>Rêves et Aspirations Profondes</h2>
+        <p><strong>10.1 Quels sont mes rêves les plus profonds ?</strong></p>
+        <ul>
+            <li>Voyager autour du monde et explorer des endroits inédits</li>
+            <li>Aider les autres et faire une différence significative</li>
+            <li>Construire un avenir stable et serein pour ma famille</li>
+            <li>Atteindre une complète indépendance personnelle et professionnelle</li>
+        </ul>
+        <p><strong>10.2 Comment réaliser ces rêves ?</strong></p>
+        <ul>
+            <li>En établissant un plan détaillé pour chaque rêve</li>
+            <li>En restant motivé(e) et persévérant(e)</li>
+            <li>En cherchant des soutiens pour réaliser mes rêves</li>
+        </ul>
+    </div>
+</div>
+
+<script>
+    function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(section => section.classList.remove('active'));
+
+        // Show the selected section
+        const selectedSection = document.getElementById(sectionId);
+        selectedSection.classList.add('active');
     }
+</script>
 
-    function showSummary() {
-      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-      document.getElementById('screen3').classList.add('active');
-      const container = document.getElementById('summary');
-      container.innerHTML = "";
-      questionsBank[currentTheme].questions.forEach((q, i) => {
-        const val = document.getElementById(`q${i}`).value;
-        container.innerHTML += `<p><strong>${q}</strong><br>💬 ${val}</p>`;
-      });
-    }
-
-    function restart() {
-      document.querySelectorAll('.screen').forEach(el => el.classList.remove('active'));
-      document.getElementById('screen1').classList.add('active');
-    }
-  </script>
 </body>
 </html>
